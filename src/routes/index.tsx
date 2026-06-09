@@ -30,10 +30,6 @@ const T = {
     cta_explore: 'Explore Culture',
     cta_services: 'Our Services',
     slide_eyebrow: 'Republic of Cameroon',
-    stat1_label: 'Cultural Sites',
-    stat2_label: 'Registered Artists',
-    stat3_label: 'Annual Events',
-    stat4_label: 'Cultural Groups',
     about_label: 'About the Ministry',
     about_title: "Guardians of Cameroon's Cultural Soul",
     about_p: "The Ministry of Arts and Culture (MINAC) is the government body responsible for defining and implementing Cameroon's cultural policy. Since its establishment, MINAC has worked tirelessly to preserve, promote, and valorize Cameroon's extraordinary cultural heritage — one of Africa's most diverse, encompassing over 280 ethnic groups, languages, traditions, and art forms.",
@@ -231,10 +227,6 @@ const T = {
     cta_explore: 'Explorer la Culture',
     cta_services: 'Nos Services',
     slide_eyebrow: 'République du Cameroun',
-    stat1_label: 'Sites Culturels',
-    stat2_label: 'Artistes Enregistrés',
-    stat3_label: 'Événements Annuels',
-    stat4_label: 'Groupes Culturels',
     about_label: 'À propos du Ministère',
     about_title: "Gardiens de l'Âme Culturelle du Cameroun",
     about_p: "Le Ministère des Arts et de la Culture (MINAC) est l'organe gouvernemental chargé de définir et de mettre en œuvre la politique culturelle du Cameroun. Depuis sa création, le MINAC œuvre sans relâche pour préserver, promouvoir et valoriser l'extraordinaire patrimoine culturel camerounais — l'un des plus divers d'Afrique, englobant plus de 280 groupes ethniques, langues, traditions et formes d'expression artistique.",
@@ -486,30 +478,6 @@ export default function MinacWebsite() {
     return () => obs.disconnect()
   })
 
-  useEffect(() => {
-    const counters = document.querySelectorAll<HTMLElement>('.stat-number[data-target]')
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const el = e.target as HTMLElement
-          const raw = el.dataset.target || '0'
-          const hasPlus = raw.includes('+')
-          const target = parseInt(raw.replace(/\D/g, ''), 10)
-          let current = 0
-          const step = Math.max(1, Math.floor(target / 60))
-          const timer = setInterval(() => {
-            current = Math.min(current + step, target)
-            el.textContent = current.toLocaleString() + (hasPlus ? '+' : '')
-            if (current >= target) clearInterval(timer)
-          }, 25)
-          obs.unobserve(el)
-        }
-      })
-    }, { threshold: 0.5 })
-    counters.forEach(c => obs.observe(c))
-    return () => obs.disconnect()
-  })
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setMobileOpen(false)
@@ -628,24 +596,6 @@ export default function MinacWebsite() {
           ))}
         </div>
       </section>
-
-      {/* STATS */}
-      <div className="stats-section">
-        <div className="stats-grid">
-          {[
-            { icon: '🏛️', target: '185+', label: t.stat1_label },
-            { icon: '🎨', target: '12000+', label: t.stat2_label },
-            { icon: '🎪', target: '320+', label: t.stat3_label },
-            { icon: '🥁', target: '280', label: t.stat4_label },
-          ].map((s, i) => (
-            <div className="stat-card fade-in" key={i}>
-              <div className="stat-icon">{s.icon}</div>
-              <div className="stat-number" data-target={s.target}>{s.target}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* ABOUT */}
       <section id="about" className="pattern-bg">

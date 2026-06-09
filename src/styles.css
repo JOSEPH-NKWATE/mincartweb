@@ -342,39 +342,6 @@ section { padding: 5rem 1.5rem; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%231a0f00'/%3E%3Crect x='0' y='0' width='20' height='20' fill='%23C9A84C' opacity='0.08'/%3E%3Crect x='20' y='20' width='20' height='20' fill='%23C9A84C' opacity='0.08'/%3E%3C/svg%3E");
 }
 
-/* ─── STATS ──────────────────────────────────────────── */
-.stats-section {
-  background: linear-gradient(135deg, var(--dark-brown) 0%, var(--deep-red) 50%, var(--dark-brown) 100%);
-  padding: 3.5rem 1.5rem;
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.stat-card {
-  text-align: center;
-  color: #fff;
-  padding: 1.5rem;
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 8px;
-  background: rgba(255,255,255,0.05);
-  transition: transform 0.2s;
-}
-.stat-card:hover { transform: translateY(-4px); }
-.stat-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-.stat-number {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-.stat-label { font-size: 0.85rem; opacity: 0.8; letter-spacing: 0.04em; }
-
 /* ─── ABOUT ──────────────────────────────────────────── */
 .about-grid {
   display: grid;
@@ -977,7 +944,6 @@ section { padding: 5rem 1.5rem; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .cards-grid-3, .news-grid, .services-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -990,7 +956,6 @@ section { padding: 5rem 1.5rem; }
   .navbar-links { display: none; }
   .hamburger { display: flex; }
   .cards-grid-3, .news-grid, .services-grid, .projects-grid, .values-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .tourism-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
@@ -1000,7 +965,6 @@ section { padding: 5rem 1.5rem; }
   section { padding: 3.5rem 1rem; }
 }
 @media (max-width: 480px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-cta { flex-direction: column; align-items: center; }
 }
