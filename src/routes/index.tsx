@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 export const Route = createFileRoute('/')({
@@ -544,6 +544,9 @@ export default function MinacWebsite() {
                 {l.label}
               </a>
             ))}
+            <Link to="/reglementation-cinematographique" className="navbar-cine-link">
+              🎬 {lang === 'en' ? 'Cinema Regulation' : 'Réglementation Ciné'}
+            </Link>
           </div>
           <div className="navbar-right">
             <div className="lang-toggle">
@@ -562,6 +565,9 @@ export default function MinacWebsite() {
         {navLinks.map(l => (
           <a key={l.id} href={`#${l.id}`} onClick={e => { e.preventDefault(); scrollTo(l.id) }}>{l.label}</a>
         ))}
+        <Link to="/reglementation-cinematographique" onClick={() => setMobileOpen(false)}>
+          🎬 {lang === 'en' ? 'Cinema Regulation' : 'Réglementation Ciné'}
+        </Link>
         <div style={{ display: 'flex', gap: '0.5rem', paddingTop: '1rem' }}>
           {(['en', 'fr'] as Lang[]).map(lg => (
             <button key={lg} onClick={() => setLang(lg)} style={{ padding: '0.4rem 1rem', borderRadius: '4px', border: '1px solid rgba(201,168,76,0.4)', cursor: 'pointer', background: lang === lg ? 'var(--gold)' : 'transparent', color: lang === lg ? 'var(--dark-bg)' : 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
