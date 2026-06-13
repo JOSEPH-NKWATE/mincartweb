@@ -529,7 +529,7 @@ export default function MinacWebsite() {
       <nav className="navbar">
         <div className="navbar-inner">
           <a className="navbar-brand" href="#home" onClick={e => { e.preventDefault(); scrollTo('home') }}>
-            <div className="navbar-logo-icon">🎭</div>
+            <span className="logo-badge"><img src="/minac-logo.png" alt="MINAC — Ministry of Arts and Culture" /></span>
             <div className="navbar-brand-text">
               <span className="navbar-brand-top">{t.ministry_top}</span>
               <span className="navbar-brand-main">{lang === 'en' ? 'Min. Arts & Culture' : 'Min. Arts et Culture'}</span>
@@ -951,7 +951,7 @@ export default function MinacWebsite() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand-logo">
-              <div className="footer-brand-icon">🎭</div>
+              <span className="logo-badge logo-badge--footer"><img src="/minac-logo.png" alt="MINAC — Ministry of Arts and Culture" /></span>
               <div>
                 <div style={{ color: 'var(--gold)', fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '0.95rem' }}>{t.ministry_name}</div>
                 <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem', letterSpacing: '0.06em' }}>{t.ministry_sub}</div>
