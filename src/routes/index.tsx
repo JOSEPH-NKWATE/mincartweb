@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { ArrowRight, Building2, Film, Handshake, ShieldCheck } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 export const Route = createFileRoute('/')({
   component: MinacWebsite,
@@ -30,6 +31,19 @@ const T = {
     cta_explore: 'Explore Culture',
     cta_services: 'Our Services',
     slide_eyebrow: 'Republic of Cameroon',
+    dcpa_badge: 'Directorate of Cinematography and Audiovisual Productions',
+    dcpa_ministry: 'A central directorate of the Ministry of Arts and Culture',
+    dcpa_name: 'DCPA',
+    dcpa_desc: "Cameroon's public service for developing the national film industry, supporting film and audiovisual productions, and ensuring compliance with the rules governing audiovisual activities.",
+    dcpa_focus_strategy: 'Develop the national film industry',
+    dcpa_focus_support: 'Support film and audiovisual productions',
+    dcpa_focus_compliance: 'Guide regulatory compliance',
+    dcpa_enter: 'Access Cinema Regulations',
+    dcpa_secondary: 'Discover MINAC',
+    dcpa_service_label: 'DCPA Essential Service',
+    dcpa_reg_title: 'Cinema Regulations',
+    dcpa_reg_desc: 'Find authorization procedures, required documents, exhibition visas, administrative deadlines, forms and official guidance.',
+    dcpa_reg_cta: 'Enter the DCPA regulations portal',
     about_label: 'About the Ministry',
     about_title: "Guardians of Cameroon's Cultural Soul",
     about_p: "The Ministry of Arts and Culture (MINAC) is the government body responsible for defining and implementing Cameroon's cultural policy. Since its establishment, MINAC has worked tirelessly to preserve, promote, and valorize Cameroon's extraordinary cultural heritage — one of Africa's most diverse, encompassing over 280 ethnic groups, languages, traditions, and art forms.",
@@ -227,6 +241,19 @@ const T = {
     cta_explore: 'Explorer la Culture',
     cta_services: 'Nos Services',
     slide_eyebrow: 'République du Cameroun',
+    dcpa_badge: 'Direction de la Cinématographie et des Productions Audiovisuelles',
+    dcpa_ministry: 'Une direction centrale du Ministère des Arts et de la Culture',
+    dcpa_name: 'DCPA',
+    dcpa_desc: "Le service public camerounais chargé de développer l'industrie cinématographique nationale, de soutenir les productions cinématographiques et audiovisuelles et de veiller au respect de la réglementation.",
+    dcpa_focus_strategy: "Développer l'industrie cinématographique nationale",
+    dcpa_focus_support: 'Soutenir les productions cinéma et audiovisuelles',
+    dcpa_focus_compliance: 'Orienter la conformité réglementaire',
+    dcpa_enter: 'Accéder à la réglementation cinéma',
+    dcpa_secondary: 'Découvrir le MINAC',
+    dcpa_service_label: 'Service essentiel de la DCPA',
+    dcpa_reg_title: 'Réglementation Cinématographique',
+    dcpa_reg_desc: "Consultez les procédures d'autorisation, les pièces requises, les visas d'exploitation, les délais administratifs, les formulaires et les orientations officielles.",
+    dcpa_reg_cta: 'Entrer dans le portail réglementaire DCPA',
     about_label: 'À propos du Ministère',
     about_title: "Gardiens de l'Âme Culturelle du Cameroun",
     about_p: "Le Ministère des Arts et de la Culture (MINAC) est l'organe gouvernemental chargé de définir et de mettre en œuvre la politique culturelle du Cameroun. Depuis sa création, le MINAC œuvre sans relâche pour préserver, promouvoir et valoriser l'extraordinaire patrimoine culturel camerounais — l'un des plus divers d'Afrique, englobant plus de 280 groupes ethniques, langues, traditions et formes d'expression artistique.",
@@ -405,13 +432,6 @@ const T = {
 
 type Lang = 'en' | 'fr'
 
-const HERO_SLIDES = [
-  'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1800&q=80',
-  'https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1800&q=80',
-  'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1800&q=80',
-  'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1800&q=80',
-]
-
 const GALLERY_ITEMS = [
   { img: 'https://images.unsplash.com/photo-1580746738099-1cc1d10d5a5d?w=600&q=80', cat: 'festivals', tall: true },
   { img: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&q=80', cat: 'arts' },
@@ -434,29 +454,13 @@ const GAL_CAPS: Record<Lang, string[]> = {
 
 export default function MinacWebsite() {
   const [lang, setLang] = useState<Lang>('en')
-  const [slide, setSlide] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [galFilter, setGalFilter] = useState('all')
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-  const slideTimer = useRef<ReturnType<typeof setInterval> | null>(null)
   const t = T[lang]
-
-  const nextSlide = useCallback(() => setSlide(s => (s + 1) % HERO_SLIDES.length), [])
-  const prevSlide = useCallback(() => setSlide(s => (s - 1 + HERO_SLIDES.length) % HERO_SLIDES.length), [])
-
-  useEffect(() => {
-    slideTimer.current = setInterval(nextSlide, 5000)
-    return () => { if (slideTimer.current) clearInterval(slideTimer.current) }
-  }, [nextSlide])
-
-  const goSlide = (i: number) => {
-    setSlide(i)
-    if (slideTimer.current) clearInterval(slideTimer.current)
-    slideTimer.current = setInterval(nextSlide, 5000)
-  }
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
@@ -510,13 +514,6 @@ export default function MinacWebsite() {
     { id: 'gallery', label: t.nav_gallery },
     { id: 'news', label: t.nav_news },
     { id: 'contact', label: t.nav_contact },
-  ]
-
-  const heroSlides = [
-    { title: t.slide1_title, sub: t.slide1_sub },
-    { title: t.slide2_title, sub: t.slide2_sub },
-    { title: t.slide3_title, sub: t.slide3_sub },
-    { title: t.slide4_title, sub: t.slide4_sub },
   ]
 
   const galCaps = GAL_CAPS[lang]
@@ -577,29 +574,44 @@ export default function MinacWebsite() {
         </div>
       </div>
 
-      {/* HERO CAROUSEL */}
-      <section id="home" className="hero">
-        {HERO_SLIDES.map((src, i) => (
-          <div key={i} className={`carousel-slide${i === slide ? ' active' : ''}`}>
-            <img src={src} alt="" loading={i === 0 ? 'eager' : 'lazy'} />
-            <div className="carousel-overlay" />
+      {/* DCPA PRIMARY GATEWAY */}
+      <section id="home" className="hero dcpa-hero" aria-labelledby="dcpa-title">
+        <div className="dcpa-hero-bg" aria-hidden="true" />
+        <div className="dcpa-hero-overlay" aria-hidden="true" />
+        <div className="dcpa-filmstrip" aria-hidden="true" />
+        <div className="dcpa-hero-inner">
+          <div className="dcpa-hero-copy">
+            <div className="dcpa-kicker">
+              <Building2 size={17} aria-hidden="true" />
+              <span>{t.dcpa_badge}</span>
+            </div>
+            <p className="dcpa-ministry-line">{t.dcpa_ministry}</p>
+            <h1 id="dcpa-title" className="dcpa-title">{t.dcpa_name}</h1>
+            <p className="dcpa-description">{t.dcpa_desc}</p>
+            <div className="dcpa-focus-list" aria-label={lang === 'en' ? 'DCPA responsibilities' : 'Missions de la DCPA'}>
+              <span><Film size={18} aria-hidden="true" />{t.dcpa_focus_strategy}</span>
+              <span><Handshake size={18} aria-hidden="true" />{t.dcpa_focus_support}</span>
+              <span><ShieldCheck size={18} aria-hidden="true" />{t.dcpa_focus_compliance}</span>
+            </div>
+            <div className="dcpa-actions">
+              <Link to="/reglementation-cinematographique" className="dcpa-primary-action">
+                {t.dcpa_enter}<ArrowRight size={19} aria-hidden="true" />
+              </Link>
+              <a className="dcpa-secondary-action" href="#about" onClick={e => { e.preventDefault(); scrollTo('about') }}>
+                {t.dcpa_secondary}
+              </a>
+            </div>
           </div>
-        ))}
-        <div className="carousel-content">
-          <span className="carousel-eyebrow">{t.slide_eyebrow}</span>
-          <h1 className="carousel-title">{heroSlides[slide].title}</h1>
-          <p className="carousel-subtitle">{heroSlides[slide].sub}</p>
-          <div className="hero-cta">
-            <a className="btn-primary" href="#arts" onClick={e => { e.preventDefault(); scrollTo('arts') }}>{t.cta_explore}</a>
-            <a className="btn-outline" href="#services" onClick={e => { e.preventDefault(); scrollTo('services') }}>{t.cta_services}</a>
-          </div>
-        </div>
-        <button className="carousel-arrow prev" aria-label="Previous" onClick={prevSlide}>‹</button>
-        <button className="carousel-arrow next" aria-label="Next" onClick={nextSlide}>›</button>
-        <div className="carousel-controls">
-          {HERO_SLIDES.map((_, i) => (
-            <button key={i} className={`carousel-dot${i === slide ? ' active' : ''}`} aria-label={`Slide ${i + 1}`} onClick={() => goSlide(i)} />
-          ))}
+
+          <Link to="/reglementation-cinematographique" className="dcpa-regulations-card">
+            <span className="dcpa-card-icon"><Film size={28} aria-hidden="true" /></span>
+            <span className="dcpa-card-label">{t.dcpa_service_label}</span>
+            <h2>{t.dcpa_reg_title}</h2>
+            <p>{t.dcpa_reg_desc}</p>
+            <span className="dcpa-card-link">
+              {t.dcpa_reg_cta}<ArrowRight size={20} aria-hidden="true" />
+            </span>
+          </Link>
         </div>
       </section>
 
