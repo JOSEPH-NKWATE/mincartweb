@@ -41,7 +41,7 @@ const CT = {
     nav_visa: "Visa d'Exploitation",
     nav_deadlines: 'Délais Administratifs',
     nav_commission: 'Commission de Contrôle',
-    nav_downloads: 'Formulaires',
+    nav_downloads: 'Documents',
     nav_faq: 'Questions Fréquentes',
     nav_contact: 'Contact',
     on_this_page: 'Sur cette page',
@@ -128,17 +128,17 @@ const CT = {
     org_root: 'Commission Nationale de Contrôle',
     org_nodes: ['Présidence de la Commission', 'Secrétariat Technique', 'Représentants Ministériels', 'Magistrats & Juristes', 'Experts & Société Civile'],
     downloads_label: 'Centre de Téléchargement',
-    downloads_title: 'Télécharger les Formulaires',
-    downloads_sub: 'Téléchargez les formulaires officiels nécessaires à vos démarches.',
-    search_placeholder: 'Rechercher un formulaire…',
+    downloads_title: 'Télécharger les Documents Officiels',
+    downloads_sub: 'Consultez et téléchargez les textes juridiques relatifs au cinéma et à l’audiovisuel au Cameroun.',
+    search_placeholder: 'Rechercher un document…',
     filter_all: 'Tous',
     download_btn: 'Télécharger',
-    no_results: 'Aucun formulaire ne correspond à votre recherche.',
+    no_results: 'Aucun document ne correspond à votre recherche.',
     forms: [
-      { title: 'Formulaire Production', cat: 'Production' },
-      { title: 'Formulaire Prise de Vue', cat: 'Prise de Vue' },
-      { title: 'Formulaire Distribution', cat: 'Distribution' },
-      { title: 'Formulaire Exploitation', cat: 'Exploitation' },
+      { title: 'Loi sur la Réglementation du Cinéma', cat: 'Cinéma', href: '/documents/loi-reglementation-cinema-cameroun.pdf' },
+      { title: 'Loi régissant l’Audiovisuel au Cameroun', cat: 'Audiovisuel', href: '/documents/loi-audiovisuel-cameroun-2015.pdf' },
+      { title: 'Loi relative aux Droits et Taxes', cat: 'Droits et Taxes', href: '/documents/loi-droits-et-taxes.pdf' },
+      { title: 'Loi relative aux Règles de Police et d’Hygiène', cat: 'Police et Hygiène', href: '/documents/loi-regles-police-hygiene.pdf' },
     ],
     faq_label: 'Aide',
     faq_title: 'Questions Fréquentes',
@@ -164,7 +164,6 @@ const CT = {
     contact_cta_title: 'Démarrer une demande en ligne',
     contact_cta_desc: 'Initiez votre demande d’autorisation directement auprès des services compétents.',
     contact_cta_btn: 'Faire une Demande en Ligne',
-    soon_notice: 'Document bientôt disponible. Veuillez contacter le MINAC pour l’obtenir.',
   },
   en: {
     back_home: 'Home',
@@ -183,7 +182,7 @@ const CT = {
     nav_visa: 'Exhibition Visa',
     nav_deadlines: 'Administrative Deadlines',
     nav_commission: 'Control Commission',
-    nav_downloads: 'Forms',
+    nav_downloads: 'Documents',
     nav_faq: 'FAQ',
     nav_contact: 'Contact',
     on_this_page: 'On this page',
@@ -269,17 +268,17 @@ const CT = {
     org_root: 'National Control Commission',
     org_nodes: ['Commission Chair', 'Technical Secretariat', 'Ministerial Representatives', 'Magistrates & Jurists', 'Experts & Civil Society'],
     downloads_label: 'Download Center',
-    downloads_title: 'Download Forms',
-    downloads_sub: 'Download the official forms needed for your procedures.',
-    search_placeholder: 'Search for a form…',
+    downloads_title: 'Download Official Documents',
+    downloads_sub: 'View and download the legal texts governing cinema and audiovisual activities in Cameroon.',
+    search_placeholder: 'Search for a document…',
     filter_all: 'All',
     download_btn: 'Download',
-    no_results: 'No form matches your search.',
+    no_results: 'No document matches your search.',
     forms: [
-      { title: 'Production Form', cat: 'Production' },
-      { title: 'Filming Form', cat: 'Prise de Vue' },
-      { title: 'Distribution Form', cat: 'Distribution' },
-      { title: 'Exhibition Form', cat: 'Exploitation' },
+      { title: 'Cinema Regulation Law', cat: 'Cinema', href: '/documents/loi-reglementation-cinema-cameroun.pdf' },
+      { title: 'Law Governing Audiovisual Media in Cameroon', cat: 'Audiovisual', href: '/documents/loi-audiovisuel-cameroun-2015.pdf' },
+      { title: 'Law on Duties and Taxes', cat: 'Duties and Taxes', href: '/documents/loi-droits-et-taxes.pdf' },
+      { title: 'Law on Police and Hygiene Rules', cat: 'Police and Hygiene', href: '/documents/loi-regles-police-hygiene.pdf' },
     ],
     faq_label: 'Help',
     faq_title: 'Frequently Asked Questions',
@@ -305,7 +304,6 @@ const CT = {
     contact_cta_title: 'Start an online request',
     contact_cta_desc: 'Begin your authorization request directly with the relevant services.',
     contact_cta_btn: 'Submit an Online Request',
-    soon_notice: 'Document coming soon. Please contact MINAC to obtain it.',
   },
 } as const
 
@@ -367,7 +365,6 @@ export default function CinemaRegulation() {
   const [formQuery, setFormQuery] = useState('')
   const [formFilter, setFormFilter] = useState('all')
   const [faqQuery, setFaqQuery] = useState('')
-  const [notice, setNotice] = useState('')
   const t = CT[lang]
 
   const navItems: { id: SectionId; label: string }[] = [
@@ -411,13 +408,6 @@ export default function CinemaRegulation() {
     return () => obs.disconnect()
   }, [lang])
 
-  // Notice auto-dismiss
-  useEffect(() => {
-    if (!notice) return
-    const id = setTimeout(() => setNotice(''), 4000)
-    return () => clearTimeout(id)
-  }, [notice])
-
   const scrollTo = (id: SectionId) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -433,10 +423,12 @@ export default function CinemaRegulation() {
     return matchesQuery && matchesFilter
   })
 
-  const filteredFaq = t.faq.filter(item => {
-    const q = faqQuery.trim().toLowerCase()
-    return !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q)
-  })
+  const filteredFaq = t.faq
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => {
+      const q = faqQuery.trim().toLowerCase()
+      return !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q)
+    })
 
   return (
     <div className="cine-page">
@@ -478,9 +470,13 @@ export default function CinemaRegulation() {
           <h1 className="cine-hero-title">{t.hero_title}</h1>
           <p className="cine-hero-sub">{t.hero_sub}</p>
           <div className="cine-hero-cta">
-            <button className="cine-btn cine-btn-gold" onClick={() => setNotice(t.soon_notice)}>
+            <a
+              className="cine-btn cine-btn-gold"
+              href="/documents/loi-reglementation-cinema-cameroun.pdf"
+              download
+            >
               <Download size={18} aria-hidden /> {t.cta_decree}
-            </button>
+            </a>
             <button className="cine-btn cine-btn-outline" onClick={() => scrollTo('downloads')}>
               <Send size={18} aria-hidden /> {t.cta_request}
             </button>
@@ -693,9 +689,9 @@ export default function CinemaRegulation() {
                     <h3>{f.title}</h3>
                     <span>{f.cat}</span>
                   </div>
-                  <button className="cine-btn cine-btn-gold cine-btn-sm" onClick={() => setNotice(t.soon_notice)}>
+                  <a className="cine-btn cine-btn-gold cine-btn-sm" href={f.href} download>
                     <Download size={16} aria-hidden /> {t.download_btn}
-                  </button>
+                  </a>
                 </article>
               ))}
               {filteredForms.length === 0 && <p className="cine-empty">{t.no_results}</p>}
@@ -716,8 +712,7 @@ export default function CinemaRegulation() {
               />
             </div>
             <div className="cine-faq">
-              {filteredFaq.map((item) => {
-                const realIndex = t.faq.indexOf(item)
+              {filteredFaq.map(({ item, index: realIndex }) => {
                 const isOpen = openFaq === realIndex
                 return (
                   <div key={item.q} className={`cine-reveal cine-faq-item${isOpen ? ' open' : ''}`}>
@@ -768,11 +763,6 @@ export default function CinemaRegulation() {
             </div>
           </section>
         </main>
-      </div>
-
-      {/* TOAST NOTICE */}
-      <div className={`cine-toast${notice ? ' show' : ''}`} role="status" aria-live="polite">
-        {notice}
       </div>
     </div>
   )
