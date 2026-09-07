@@ -10,8 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ReglementationCinematographiqueRouteImport } from './routes/reglementation-cinematographique'
+import { Route as OrganisationRouteImport } from './routes/organisation'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as DirectionsCinematographieProductionsAudiovisuellesRouteImport } from './routes/directions/cinematographie-productions-audiovisuelles'
 
 const ReglementationCinematographiqueRoute =
   ReglementationCinematographiqueRouteImport.update({
@@ -19,6 +21,11 @@ const ReglementationCinematographiqueRoute =
     path: '/reglementation-cinematographique',
     getParentRoute: () => rootRouteImport,
   } as any)
+const OrganisationRoute = OrganisationRouteImport.update({
+  id: '/organisation',
+  path: '/organisation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -29,38 +36,64 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   path: '/products/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DirectionsCinematographieProductionsAudiovisuellesRoute =
+  DirectionsCinematographieProductionsAudiovisuellesRouteImport.update({
+    id: '/directions/cinematographie-productions-audiovisuelles',
+    path: '/directions/cinematographie-productions-audiovisuelles',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/organisation': typeof OrganisationRoute
   '/reglementation-cinematographique': typeof ReglementationCinematographiqueRoute
+  '/directions/cinematographie-productions-audiovisuelles': typeof DirectionsCinematographieProductionsAudiovisuellesRoute
   '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/organisation': typeof OrganisationRoute
   '/reglementation-cinematographique': typeof ReglementationCinematographiqueRoute
+  '/directions/cinematographie-productions-audiovisuelles': typeof DirectionsCinematographieProductionsAudiovisuellesRoute
   '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/organisation': typeof OrganisationRoute
   '/reglementation-cinematographique': typeof ReglementationCinematographiqueRoute
+  '/directions/cinematographie-productions-audiovisuelles': typeof DirectionsCinematographieProductionsAudiovisuellesRoute
   '/products/$productId': typeof ProductsProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/reglementation-cinematographique' | '/products/$productId'
+  fullPaths:
+    | '/'
+    | '/organisation'
+    | '/reglementation-cinematographique'
+    | '/directions/cinematographie-productions-audiovisuelles'
+    | '/products/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/reglementation-cinematographique' | '/products/$productId'
+  to:
+    | '/'
+    | '/organisation'
+    | '/reglementation-cinematographique'
+    | '/directions/cinematographie-productions-audiovisuelles'
+    | '/products/$productId'
   id:
     | '__root__'
     | '/'
+    | '/organisation'
     | '/reglementation-cinematographique'
+    | '/directions/cinematographie-productions-audiovisuelles'
     | '/products/$productId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OrganisationRoute: typeof OrganisationRoute
   ReglementationCinematographiqueRoute: typeof ReglementationCinematographiqueRoute
+  DirectionsCinematographieProductionsAudiovisuellesRoute: typeof DirectionsCinematographieProductionsAudiovisuellesRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
 }
 
@@ -71,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/reglementation-cinematographique'
       fullPath: '/reglementation-cinematographique'
       preLoaderRoute: typeof ReglementationCinematographiqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organisation': {
+      id: '/organisation'
+      path: '/organisation'
+      fullPath: '/organisation'
+      preLoaderRoute: typeof OrganisationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,12 +127,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/directions/cinematographie-productions-audiovisuelles': {
+      id: '/directions/cinematographie-productions-audiovisuelles'
+      path: '/directions/cinematographie-productions-audiovisuelles'
+      fullPath: '/directions/cinematographie-productions-audiovisuelles'
+      preLoaderRoute: typeof DirectionsCinematographieProductionsAudiovisuellesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OrganisationRoute: OrganisationRoute,
   ReglementationCinematographiqueRoute: ReglementationCinematographiqueRoute,
+  DirectionsCinematographieProductionsAudiovisuellesRoute:
+    DirectionsCinematographieProductionsAudiovisuellesRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
 }
 export const routeTree = rootRouteImport
