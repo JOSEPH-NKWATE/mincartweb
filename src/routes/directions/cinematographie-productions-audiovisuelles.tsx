@@ -8,6 +8,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { InstitutionalFooter } from '@/components/InstitutionalFooter'
 import { InstitutionalHeader } from '@/components/InstitutionalHeader'
 import { DcpaOrganisationTree } from '@/components/OrganisationTree'
+import { useLanguage } from '@/lib/language'
 
 export const Route = createFileRoute('/directions/cinematographie-productions-audiovisuelles')({
   component: DcpaPage,
@@ -19,7 +20,7 @@ export const Route = createFileRoute('/directions/cinematographie-productions-au
   }),
 })
 
-const missions = [
+const missionsFr = [
   { icon: Clapperboard, title: 'Développement de la cinématographie', text: 'Définition des stratégies de développement de la cinématographie et des productions audiovisuelles.' },
   { icon: Camera, title: 'Production audiovisuelle', text: 'Conception et réalisation de productions audiovisuelles destinées à promouvoir et renforcer l’identité culturelle nationale.' },
   { icon: Handshake, title: 'Appui aux professionnels', text: 'Appui à la production audiovisuelle et cinématographique.' },
@@ -32,7 +33,7 @@ const missions = [
   { icon: Film, title: 'Contrôle des films', text: 'Animation de la commission de contrôle des films cinématographiques et audiovisuels.' },
 ]
 
-const departments = [
+const departmentsFr = [
   {
     title: 'Sous-Direction de la Cinématographie, des Normes et des Contrôles',
     description: 'Cette sous-direction contribue à l’encadrement, au développement et au suivi des activités cinématographiques et audiovisuelles. Elle intervient notamment dans l’application de la réglementation, l’examen des demandes de prise de vue professionnelle, le suivi des professions du secteur, les études relatives au développement de l’industrie cinématographique et l’appui aux professionnels.',
@@ -85,11 +86,52 @@ const departments = [
   },
 ]
 
-const documents = [
+const documentsFr = [
   { title: 'Loi sur la réglementation du cinéma', href: '/documents/loi-reglementation-cinema-cameroun.pdf', meta: 'PDF · Document officiel' },
   { title: 'Loi régissant l’audiovisuel au Cameroun', href: '/documents/loi-audiovisuel-cameroun-2015.pdf', meta: 'PDF · Document officiel' },
   { title: 'Règles de police et d’hygiène', href: '/documents/loi-regles-police-hygiene.pdf', meta: 'PDF · Document officiel' },
   { title: 'Droits et taxes', href: '/documents/loi-droits-et-taxes.pdf', meta: 'PDF · Document officiel' },
+]
+
+const missionsEn = [
+  { icon: Clapperboard, title: 'Development of cinematography', text: 'Defining strategies for the development of cinematography and audiovisual productions.' },
+  { icon: Camera, title: 'Audiovisual production', text: 'Designing and producing audiovisual works that promote and strengthen national cultural identity.' },
+  { icon: Handshake, title: 'Support for professionals', text: 'Supporting audiovisual and cinematographic production.' },
+  { icon: Scale, title: 'Regulation', text: 'Preparing and enforcing regulations for cinematographic and audiovisual activities.' },
+  { icon: ShieldCheck, title: 'Activity oversight', text: 'Monitoring cinematographic and audiovisual professions and activities.' },
+  { icon: Sparkles, title: 'Film industry promotion', text: 'Creating and coordinating structures that develop cinematographic art, trade and industry.' },
+  { icon: Archive, title: 'Audiovisual heritage', text: 'Monitoring national cinematography and preserving filmed and audiovisual archives.' },
+  { icon: BarChart3, title: 'Data and statistics', text: 'Collecting statistics on film production, distribution and exhibition.' },
+  { icon: FileCheck2, title: 'Filming authorisations', text: 'Reviewing requests to film movies and audiovisual works within Cameroon.' },
+  { icon: Film, title: 'Film classification', text: 'Coordinating the commission responsible for reviewing cinematographic and audiovisual films.' },
+]
+
+const departmentsEn = [
+  {
+    title: 'Sub-Directorate of Cinematography, Standards and Controls',
+    description: 'This sub-directorate supports the supervision, development and monitoring of cinematographic and audiovisual activities. Its work includes applying regulations, reviewing professional filming requests, monitoring sector professions, conducting film-industry studies and supporting professionals.',
+    note: 'Its responsibilities also cover film financing, cinemas, technical support for producers and distributors, cooperation, festivals and statistical data collection.',
+    services: [
+      { title: 'Cinematography and Audiovisual Service', responsibilities: ['Studies on the development of cinematographic art, trade and industry', 'Study of issues related to financing national cinema', 'Technical support for national producers, distributors and exhibitors', 'Participation in collecting statistics on cinematographic activities'] },
+      { title: 'Standards and Controls Service', responsibilities: ['Participation in preparing and applying regulations', 'Review of professional cinematographic and audiovisual filming requests', 'Monitoring cinematographic and audiovisual professions and activities'] },
+    ],
+  },
+  {
+    title: 'Sub-Directorate of Audiovisual Affairs',
+    description: 'This sub-directorate contributes to designing, producing and promoting cultural audiovisual content. It also helps preserve film heritage and monitors the national film library and filmed archives.',
+    note: 'Its responsibilities include support for audiovisual production, cultural media content, film heritage preservation, management of the national film library and audiovisual statistics.',
+    services: [
+      { title: 'Film Library and Screening Service', responsibilities: ['Design and production of video materials promoting national cultural identity', 'Monitoring media use of cultural audiovisual products', 'Technical support for video and audiovisual production', 'Monitoring the management of the national film library and filmed archives'] },
+      { title: 'Video and Audiovisual Records Statistics Service', responsibilities: ['Collection of statistics on film production, distribution and exhibition', 'Processing and analysis of statistical data', 'Development and monitoring of key film and audiovisual sector indicators', 'Creation and updating of an audiovisual project database', 'Design and delivery of studies on cinema and audiovisual productions'] },
+    ],
+  },
+]
+
+const documentsEn = [
+  { title: 'Law regulating cinema', href: '/documents/loi-reglementation-cinema-cameroun.pdf', meta: 'PDF · Official document' },
+  { title: 'Law governing audiovisual media in Cameroon', href: '/documents/loi-audiovisuel-cameroun-2015.pdf', meta: 'PDF · Official document' },
+  { title: 'Public safety and hygiene rules', href: '/documents/loi-regles-police-hygiene.pdf', meta: 'PDF · Official document' },
+  { title: 'Duties and taxes', href: '/documents/loi-droits-et-taxes.pdf', meta: 'PDF · Official document' },
 ]
 
 function ServiceCard({ title, responsibilities }: { title: string; responsibilities: string[] }) {
@@ -111,6 +153,11 @@ function ServiceCard({ title, responsibilities }: { title: string; responsibilit
 }
 
 function DcpaPage() {
+  const { language } = useLanguage()
+  const english = language === 'en'
+  const missions = english ? missionsEn : missionsFr
+  const departments = english ? departmentsEn : departmentsFr
+  const documents = english ? documentsEn : documentsFr
   return (
     <div className="institutional-page dcpa-page">
       <InstitutionalHeader />
@@ -119,15 +166,15 @@ function DcpaPage() {
           <div className="dcpa-hero-photo" aria-hidden="true" />
           <div className="dcpa-hero-pattern" aria-hidden="true" />
           <div className="institutional-container dcpa-institutional-hero-inner">
-            <Breadcrumbs items={[{ label: 'Le Ministère' }, { label: 'Organisation', to: '/organisation' }, { label: 'DCPA' }]} />
+            <Breadcrumbs items={[{ label: english ? 'The Ministry' : 'Le Ministère' }, { label: 'Organisation', to: '/organisation' }, { label: 'DCPA' }]} />
             <div className="dcpa-hero-content">
-              <span className="institutional-eyebrow">Direction centrale · DCPA</span>
+              <span className="institutional-eyebrow">{english ? 'Central directorate · DCPA' : 'Direction centrale · DCPA'}</span>
               <img className="dcpa-wordmark" src="/dcpa-logo.png" alt="DCPA" />
-              <h1>Direction de la Cinématographie et des Productions Audiovisuelles</h1>
-              <p>Développement de la cinématographie et des productions audiovisuelles au service de la promotion de l’identité culturelle nationale.</p>
+              <h1>{english ? 'Directorate of Cinematography and Audiovisual Productions' : 'Direction de la Cinématographie et des Productions Audiovisuelles'}</h1>
+              <p>{english ? 'Developing cinematography and audiovisual productions to promote national cultural identity.' : 'Développement de la cinématographie et des productions audiovisuelles au service de la promotion de l’identité culturelle nationale.'}</p>
               <div className="dcpa-hero-actions">
-                <a className="institutional-button" href="#missions">Découvrir les missions</a>
-                <a className="institutional-button institutional-button--outline" href="#documents">Documents officiels</a>
+                <a className="institutional-button" href="#missions">{english ? 'Discover the missions' : 'Découvrir les missions'}</a>
+                <a className="institutional-button institutional-button--outline" href="#documents">{english ? 'Official documents' : 'Documents officiels'}</a>
               </div>
             </div>
           </div>
@@ -137,12 +184,12 @@ function DcpaPage() {
           <div className="institutional-container institutional-prose-grid">
             <div>
               <span className="institutional-section-number">01</span>
-              <span className="institutional-eyebrow">Présentation</span>
-              <h2>Une direction dédiée au développement du cinéma camerounais</h2>
+              <span className="institutional-eyebrow">{english ? 'Overview' : 'Présentation'}</span>
+              <h2>{english ? 'A directorate dedicated to developing Cameroonian cinema' : 'Une direction dédiée au développement du cinéma camerounais'}</h2>
             </div>
             <div className="institutional-rich-copy">
-              <p>Placée sous l’autorité d’un Directeur, la Direction de la Cinématographie et des Productions Audiovisuelles est chargée de contribuer au développement de la cinématographie et des productions audiovisuelles au Cameroun.</p>
-              <p>Elle intervient notamment dans la définition des stratégies de développement du secteur, l’appui à la production audiovisuelle et cinématographique, l’application de la réglementation, le suivi des professions et activités cinématographiques et audiovisuelles, ainsi que la préservation et la valorisation du patrimoine filmique et audiovisuel national.</p>
+              <p>{english ? 'Under the authority of a Director, the Directorate of Cinematography and Audiovisual Productions contributes to the development of cinematography and audiovisual productions in Cameroon.' : 'Placée sous l’autorité d’un Directeur, la Direction de la Cinématographie et des Productions Audiovisuelles est chargée de contribuer au développement de la cinématographie et des productions audiovisuelles au Cameroun.'}</p>
+              <p>{english ? 'It defines sector development strategies, supports audiovisual and film production, applies regulations, monitors professions and activities, and preserves and promotes the national film and audiovisual heritage.' : 'Elle intervient notamment dans la définition des stratégies de développement du secteur, l’appui à la production audiovisuelle et cinématographique, l’application de la réglementation, le suivi des professions et activités cinématographiques et audiovisuelles, ainsi que la préservation et la valorisation du patrimoine filmique et audiovisuel national.'}</p>
             </div>
           </div>
         </section>
@@ -151,9 +198,9 @@ function DcpaPage() {
           <div className="institutional-container">
             <div className="institutional-section-heading">
               <div>
-                <span className="institutional-eyebrow">Champ d’action</span>
-                <h2>Missions et attributions</h2>
-                <p>Les principales responsabilités officielles de la DCPA, présentées par domaine d’intervention.</p>
+                <span className="institutional-eyebrow">{english ? 'Scope of action' : 'Champ d’action'}</span>
+                <h2>{english ? 'Missions and responsibilities' : 'Missions et attributions'}</h2>
+                <p>{english ? 'The DCPA’s main official responsibilities, organised by area of intervention.' : 'Les principales responsabilités officielles de la DCPA, présentées par domaine d’intervention.'}</p>
               </div>
               <span className="dcpa-mission-count">10 missions</span>
             </div>
@@ -174,12 +221,12 @@ function DcpaPage() {
           <div className="institutional-container">
             <div className="institutional-section-heading">
               <div>
-                <span className="institutional-eyebrow">Structure interne</span>
-                <h2>Organisation de la Direction</h2>
-                <p>Ouvrez ou refermez chaque branche pour parcourir la structure de la DCPA.</p>
+                <span className="institutional-eyebrow">{english ? 'Internal structure' : 'Structure interne'}</span>
+                <h2>{english ? 'Directorate organisation' : 'Organisation de la Direction'}</h2>
+                <p>{english ? 'Open or close each branch to explore the DCPA structure.' : 'Ouvrez ou refermez chaque branche pour parcourir la structure de la DCPA.'}</p>
               </div>
             </div>
-            <DcpaOrganisationTree />
+            <DcpaOrganisationTree language={language} />
           </div>
         </section>
 
@@ -187,9 +234,9 @@ function DcpaPage() {
           <div className="institutional-container">
             <div className="institutional-section-heading">
               <div>
-                <span className="institutional-eyebrow">Sous-directions et services</span>
-                <h2>Attributions par structure</h2>
-                <p>Sélectionnez un service pour consulter ses responsabilités officielles.</p>
+                <span className="institutional-eyebrow">{english ? 'Sub-directorates and services' : 'Sous-directions et services'}</span>
+                <h2>{english ? 'Responsibilities by structure' : 'Attributions par structure'}</h2>
+                <p>{english ? 'Select a service to view its official responsibilities.' : 'Sélectionnez un service pour consulter ses responsabilités officielles.'}</p>
               </div>
             </div>
             <div className="dcpa-department-stack">
@@ -216,9 +263,9 @@ function DcpaPage() {
           <div className="institutional-container">
             <LineChart size={34} aria-hidden="true" />
             <div>
-              <span className="institutional-eyebrow">Connaissance du secteur</span>
-              <h2>Documenter, analyser et préserver</h2>
-              <p>La collecte statistique, les études sectorielles et la conservation des archives contribuent au suivi durable du patrimoine filmique et audiovisuel national.</p>
+              <span className="institutional-eyebrow">{english ? 'Sector knowledge' : 'Connaissance du secteur'}</span>
+              <h2>{english ? 'Document, analyse and preserve' : 'Documenter, analyser et préserver'}</h2>
+              <p>{english ? 'Statistical collection, sector studies and archive preservation support the long-term monitoring of the national film and audiovisual heritage.' : 'La collecte statistique, les études sectorielles et la conservation des archives contribuent au suivi durable du patrimoine filmique et audiovisuel national.'}</p>
             </div>
           </div>
         </section>
@@ -227,9 +274,9 @@ function DcpaPage() {
           <div className="institutional-container">
             <div className="institutional-section-heading">
               <div>
-                <span className="institutional-eyebrow">Ressources</span>
-                <h2>Documents officiels</h2>
-                <p>Consultez les textes officiels actuellement fournis dans le portail.</p>
+                <span className="institutional-eyebrow">{english ? 'Resources' : 'Ressources'}</span>
+                <h2>{english ? 'Official documents' : 'Documents officiels'}</h2>
+                <p>{english ? 'View the official texts currently available through the portal.' : 'Consultez les textes officiels actuellement fournis dans le portail.'}</p>
               </div>
             </div>
             <div className="dcpa-document-grid">
@@ -248,4 +295,3 @@ function DcpaPage() {
     </div>
   )
 }
-

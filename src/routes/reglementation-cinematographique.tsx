@@ -5,6 +5,7 @@ import {
   Download, Search, ChevronDown, ChevronRight, CheckCircle2, Mail,
   MapPin, ArrowRight, ScrollText, Users, Eye, Home, Send, Megaphone,
 } from 'lucide-react'
+import { useLanguage } from '@/lib/language'
 
 export const Route = createFileRoute('/reglementation-cinematographique')({
   head: () => ({
@@ -19,8 +20,6 @@ export const Route = createFileRoute('/reglementation-cinematographique')({
   }),
   component: CinemaRegulation,
 })
-
-type Lang = 'fr' | 'en'
 
 // ─── TRANSLATIONS ────────────────────────────────────────────────────────────
 const CT = {
@@ -358,7 +357,7 @@ function StatCard({ value, unit, label, delay }: { value: number; unit: string; 
 }
 
 export default function CinemaRegulation() {
-  const [lang, setLang] = useState<Lang>('fr')
+  const { language: lang, setLanguage: setLang } = useLanguage()
   const [active, setActive] = useState<SectionId>('overview')
   const [openAuth, setOpenAuth] = useState<number>(0)
   const [openFaq, setOpenFaq] = useState<number>(-1)

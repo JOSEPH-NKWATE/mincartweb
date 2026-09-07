@@ -1,5 +1,6 @@
 import { ChevronDown, Film, Landmark, Network, ShieldCheck } from 'lucide-react'
 import { useState, type ReactNode } from 'react'
+import type { Language } from '@/lib/language'
 
 interface TreeNodeProps {
   title: string
@@ -39,55 +40,65 @@ function TreeNode({ title, subtitle, children, tone = 'branch', defaultOpen = fa
   )
 }
 
-export function MinacOrganisationTree() {
+const treeCopy = {
+  fr: {
+    minac: 'MINISTÈRE DES ARTS ET DE LA CULTURE', republic: 'République du Cameroun', minister: 'Ministre', privateOffice: 'Secrétariat particulier', advisers: 'Conseillers techniques', inspection: 'Inspection Générale', central: 'Administration centrale', centralStructures: 'Directions et structures centrales', dcpa: 'Direction de la Cinématographie et des Productions Audiovisuelles', cinemaStandards: 'Sous-Direction de la Cinématographie, des Normes et des Contrôles', cinemaService: 'Service de la Cinématographie et de l’Audiovisuel', standardsService: 'Service des Normes et des Contrôles', audiovisual: 'Sous-Direction de l’Audiovisuel', archiveService: 'Service de la Cinémathèque et des Projections', statisticsService: 'Service des Statistiques du Fichier Vidéo et Audiovisuel', decentralised: 'Services déconcentrés', affiliated: 'Services rattachés', minacLabel: 'Organigramme interactif du MINAC', dcpaLabel: 'Organisation interne de la DCPA',
+  },
+  en: {
+    minac: 'MINISTRY OF ARTS AND CULTURE', republic: 'Republic of Cameroon', minister: 'Minister', privateOffice: 'Private Office', advisers: 'Technical Advisers', inspection: 'General Inspectorate', central: 'Central Administration', centralStructures: 'Central Directorates and Structures', dcpa: 'Directorate of Cinematography and Audiovisual Productions', cinemaStandards: 'Sub-Directorate of Cinematography, Standards and Controls', cinemaService: 'Cinematography and Audiovisual Service', standardsService: 'Standards and Controls Service', audiovisual: 'Sub-Directorate of Audiovisual Affairs', archiveService: 'Film Library and Screening Service', statisticsService: 'Video and Audiovisual Records Statistics Service', decentralised: 'Decentralised Services', affiliated: 'Affiliated Services', minacLabel: 'Interactive MINAC organisation chart', dcpaLabel: 'Internal DCPA organisation',
+  },
+} as const
+
+export function MinacOrganisationTree({ language }: { language: Language }) {
+  const copy = treeCopy[language]
   return (
-    <div className="org-tree" aria-label="Organigramme interactif du MINAC">
-      <TreeNode title="MINISTÈRE DES ARTS ET DE LA CULTURE" subtitle="République du Cameroun" tone="root" defaultOpen>
-        <TreeNode title="Ministre" tone="minister" defaultOpen>
-          <TreeNode title="Secrétariat particulier" />
-          <TreeNode title="Conseillers techniques" />
-          <TreeNode title="Inspection Générale" />
-          <TreeNode title="Administration centrale" defaultOpen>
-            <TreeNode title="Directions et structures centrales" defaultOpen>
+    <div className="org-tree" aria-label={copy.minacLabel}>
+      <TreeNode title={copy.minac} subtitle={copy.republic} tone="root" defaultOpen>
+        <TreeNode title={copy.minister} tone="minister" defaultOpen>
+          <TreeNode title={copy.privateOffice} />
+          <TreeNode title={copy.advisers} />
+          <TreeNode title={copy.inspection} />
+          <TreeNode title={copy.central} defaultOpen>
+            <TreeNode title={copy.centralStructures} defaultOpen>
               <TreeNode
-                title="Direction de la Cinématographie et des Productions Audiovisuelles"
+                title={copy.dcpa}
                 subtitle="DCPA"
                 tone="dcpa"
                 defaultOpen
               >
-                <TreeNode title="Sous-Direction de la Cinématographie, des Normes et des Contrôles">
-                  <TreeNode title="Service de la Cinématographie et de l’Audiovisuel" />
-                  <TreeNode title="Service des Normes et des Contrôles" />
+                <TreeNode title={copy.cinemaStandards}>
+                  <TreeNode title={copy.cinemaService} />
+                  <TreeNode title={copy.standardsService} />
                 </TreeNode>
-                <TreeNode title="Sous-Direction de l’Audiovisuel">
-                  <TreeNode title="Service de la Cinémathèque et des Projections" />
-                  <TreeNode title="Service des Statistiques du Fichier Vidéo et Audiovisuel" />
+                <TreeNode title={copy.audiovisual}>
+                  <TreeNode title={copy.archiveService} />
+                  <TreeNode title={copy.statisticsService} />
                 </TreeNode>
               </TreeNode>
             </TreeNode>
           </TreeNode>
-          <TreeNode title="Services déconcentrés" />
-          <TreeNode title="Services rattachés" />
+          <TreeNode title={copy.decentralised} />
+          <TreeNode title={copy.affiliated} />
         </TreeNode>
       </TreeNode>
     </div>
   )
 }
 
-export function DcpaOrganisationTree() {
+export function DcpaOrganisationTree({ language }: { language: Language }) {
+  const copy = treeCopy[language]
   return (
-    <div className="org-tree org-tree--dcpa" aria-label="Organisation interne de la DCPA">
-      <TreeNode title="Direction de la Cinématographie et des Productions Audiovisuelles" subtitle="DCPA" tone="dcpa" defaultOpen>
-        <TreeNode title="Sous-Direction de la Cinématographie, des Normes et des Contrôles" defaultOpen>
-          <TreeNode title="Service de la Cinématographie et de l’Audiovisuel" />
-          <TreeNode title="Service des Normes et des Contrôles" />
+    <div className="org-tree org-tree--dcpa" aria-label={copy.dcpaLabel}>
+      <TreeNode title={copy.dcpa} subtitle="DCPA" tone="dcpa" defaultOpen>
+        <TreeNode title={copy.cinemaStandards} defaultOpen>
+          <TreeNode title={copy.cinemaService} />
+          <TreeNode title={copy.standardsService} />
         </TreeNode>
-        <TreeNode title="Sous-Direction de l’Audiovisuel" defaultOpen>
-          <TreeNode title="Service de la Cinémathèque et des Projections" />
-          <TreeNode title="Service des Statistiques du Fichier Vidéo et Audiovisuel" />
+        <TreeNode title={copy.audiovisual} defaultOpen>
+          <TreeNode title={copy.archiveService} />
+          <TreeNode title={copy.statisticsService} />
         </TreeNode>
       </TreeNode>
     </div>
   )
 }
-
