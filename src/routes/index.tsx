@@ -534,6 +534,8 @@ export default function MinacWebsite() {
             </div>
           </a>
           <div className="navbar-links">
+            <Link to="/organisation">Organisation</Link>
+            <Link to="/directions/cinematographie-productions-audiovisuelles">DCPA</Link>
             {navLinks.map(l => (
               <a key={l.id} href={`#${l.id}`}
                 className={activeSection === l.id ? 'active' : ''}
@@ -559,6 +561,8 @@ export default function MinacWebsite() {
 
       {/* MOBILE MENU */}
       <div className={`mobile-menu${mobileOpen ? ' open' : ''}`}>
+        <Link to="/organisation" onClick={() => setMobileOpen(false)}>Organisation</Link>
+        <Link to="/directions/cinematographie-productions-audiovisuelles" onClick={() => setMobileOpen(false)}>DCPA</Link>
         {navLinks.map(l => (
           <a key={l.id} href={`#${l.id}`} onClick={e => { e.preventDefault(); scrollTo(l.id) }}>{l.label}</a>
         ))}
@@ -594,12 +598,10 @@ export default function MinacWebsite() {
               <span><ShieldCheck size={18} aria-hidden="true" />{t.dcpa_focus_compliance}</span>
             </div>
             <div className="dcpa-actions">
-              <Link to="/reglementation-cinematographique" className="dcpa-primary-action">
-                {t.dcpa_enter}<ArrowRight size={19} aria-hidden="true" />
+              <Link to="/directions/cinematographie-productions-audiovisuelles" className="dcpa-primary-action">
+                {lang === 'en' ? 'Discover the DCPA' : 'Découvrir la DCPA'}<ArrowRight size={19} aria-hidden="true" />
               </Link>
-              <a className="dcpa-secondary-action" href="#about" onClick={e => { e.preventDefault(); scrollTo('about') }}>
-                {t.dcpa_secondary}
-              </a>
+              <Link className="dcpa-secondary-action" to="/reglementation-cinematographique">{t.dcpa_enter}</Link>
             </div>
           </div>
 
