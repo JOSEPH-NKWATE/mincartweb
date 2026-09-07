@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, Building2, Film, Handshake, ShieldCheck } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/lib/language'
 
 export const Route = createFileRoute('/')({
   component: MinacWebsite,
@@ -453,7 +454,7 @@ const GAL_CAPS: Record<Lang, string[]> = {
 }
 
 export default function MinacWebsite() {
-  const [lang, setLang] = useState<Lang>('en')
+  const { language: lang, setLanguage: setLang } = useLanguage()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [galFilter, setGalFilter] = useState('all')
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })

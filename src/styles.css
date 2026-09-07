@@ -1531,6 +1531,11 @@ section { padding: 5rem 1.5rem; }
 .institutional-nav { display: flex; align-items: center; gap: .2rem; }
 .institutional-nav a { color: rgba(255,255,255,.78); text-decoration: none; padding: .65rem .78rem; border-radius: 5px; font-size: .79rem; font-weight: 600; transition: color .2s, background .2s; }
 .institutional-nav a:hover, .institutional-nav a.active { color: #f0d47c; background: rgba(200,165,76,.1); }
+.site-language-toggle { display: inline-flex; flex: 0 0 auto; border: 1px solid rgba(200,165,76,.55); border-radius: 6px; overflow: hidden; }
+.site-language-toggle button { min-width: 38px; padding: .42rem .55rem; border: 0; color: rgba(255,255,255,.72); background: transparent; font-size: .72rem; font-weight: 800; cursor: pointer; transition: color .2s, background .2s; }
+.site-language-toggle button:hover { color: #fff; background: rgba(200,165,76,.12); }
+.site-language-toggle button.active { color: var(--inst-navy); background: var(--inst-gold); }
+.institutional-mobile-language-toggle { display: none; margin-top: .85rem; justify-self: start; }
 .institutional-menu-button { display: none; color: #f0d47c; background: transparent; border: 1px solid rgba(200,165,76,.42); border-radius: 6px; padding: .5rem; }
 .institutional-mobile-nav { display: none; }
 .institutional-breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: .42rem; margin-bottom: 3rem; color: rgba(255,255,255,.66); font-size: .78rem; }
@@ -1674,9 +1679,11 @@ section { padding: 5rem 1.5rem; }
 
 @media (max-width: 940px) {
   .institutional-nav { display: none; }
+  .institutional-language-toggle { display: none; }
   .institutional-menu-button { display: grid; place-items: center; }
   .institutional-mobile-nav { display: grid; padding: .7rem 20px 1rem; border-top: 1px solid rgba(255,255,255,.08); }
   .institutional-mobile-nav a { color: rgba(255,255,255,.82); text-decoration: none; padding: .85rem 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .86rem; }
+  .institutional-mobile-language-toggle { display: inline-flex; }
   .organisation-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
   .organisation-emblem { justify-self: start; width: 230px; }
   .institutional-prose-grid { grid-template-columns: 1fr; gap: 2rem; }
