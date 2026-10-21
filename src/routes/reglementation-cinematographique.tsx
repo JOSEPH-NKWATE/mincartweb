@@ -65,19 +65,19 @@ const CT = {
       {
         icon: '🎥',
         title: 'Autorisation de Production',
-        docs: ['Demande timbrée', 'Titre provisoire du film', 'Format et modalités techniques', 'Lieux de tournage', 'Nom du laboratoire', 'Date de début du tournage', 'Casier judiciaire du réalisateur', 'Statuts de la société (si applicable)'],
+        docs: ["Demande timbrée adressée à Monsieur le Ministre.", 'Titre provisoire du film, format, caractéristiques techniques et lieux de tournage.', 'Nom du laboratoire', 'Date de début du tournage', 'Casier judiciaire du réalisateur', 'Statuts de la société (si applicable)', "Attestation d’immatriculation.", 'Attestation de conformité fiscale (ACF).', 'Extrait du Registre du Commerce et du Crédit Mobilier (RCCM).', 'Budget du film.', 'Quittance de paiement.'],
         sub: [] as string[],
       },
       {
         icon: '📹',
         title: 'Autorisation de Prise de Vue',
-        docs: ['Demande timbrée', 'Scénario', 'Contrats des auteurs', 'Contrat du réalisateur', 'Liste du personnel technique', 'Autorisation de production', "Informations d'état civil"],
+        docs: ['Demande timbrée', 'Scénario', 'Contrats des auteurs (scénariste et compositeur) et contrat du réalisateur.', 'Liste du personnel technique', 'Autorisation de production', "Informations d'état civil", 'Quittance de paiement de 20 000 FCFA.', 'Fiche technique.'],
         sub: [],
       },
       {
         icon: '📀',
         title: 'Autorisation de Distribution',
-        docs: ['Demande timbrée', 'Casier judiciaire', 'Statuts de la société'],
+        docs: ['Demande timbrée', 'Casier judiciaire', 'Statuts de la société', 'LCCM', 'Attestation de conformité fiscale (ACF)', 'Quittance de paiement de 200 000 FCFA.'],
         sub: [],
       },
       {
@@ -92,8 +92,8 @@ const CT = {
     construction_sub: "De la préparation du dossier à l'autorisation de construire, suivez chaque étape de la procédure.",
     steps: [
       { title: 'Préparer le dossier', desc: 'Rassembler toutes les pièces administratives et techniques requises.' },
-      { title: 'Dépôt à la Délégation Provinciale', desc: "Soumettre le dossier complet auprès de la Délégation Provinciale du MINAC." },
-      { title: 'Examen par la Commission Provinciale', desc: "La Commission étudie la conformité et la recevabilité du dossier." },
+      { title: 'Dépôt à la Délégation Régionale', desc: "Soumettre le dossier complet auprès de la Délégation Régionale du MINAC." },
+      { title: 'Examen par la Commission Régionale', desc: "La Commission étudie la conformité et la recevabilité du dossier." },
       { title: 'Décision du Gouverneur', desc: "Le Gouverneur statue sur la demande d'autorisation." },
       { title: 'Autorisation de Construction', desc: "Délivrance de l'autorisation officielle de construire la salle." },
     ],
@@ -105,10 +105,10 @@ const CT = {
     visa_statement: "Aucun film ne peut être projeté au Cameroun sans visa d'exploitation délivré par le Ministère de la Culture.",
     visa_types_title: 'Types de visa',
     visa_types: [
-      { color: 'green', label: 'Tous publics', desc: 'Œuvre accessible à tout public sans restriction.' },
-      { color: 'yellow', label: 'Interdit aux moins de 13 ans', desc: 'Diffusion soumise à une restriction d’âge.' },
-      { color: 'red', label: 'Interdit aux moins de 18 ans', desc: 'Œuvre réservée à un public adulte.' },
-      { color: 'black', label: "Refus d'exploitation", desc: 'Œuvre non autorisée à la diffusion publique.' },
+      { color: 'green', label: 'Tous publics (Visa S)', desc: 'Œuvre accessible à tout public sans restriction.' },
+      { color: 'yellow', label: 'Interdit aux moins de 13 ans (Visa T)', desc: 'Diffusion soumise à une restriction d’âge.' },
+      { color: 'red', label: 'Interdit aux moins de 18 ans (Visa D)', desc: 'Œuvre réservée à un public adulte.' },
+      { color: 'black', label: "Refus d'exploitation (Visa C)", desc: 'Œuvre non autorisée à la diffusion publique.' },
     ],
     deadlines_label: 'Repères',
     deadlines_title: 'Délais Administratifs',
@@ -147,7 +147,7 @@ const CT = {
       { q: 'Quel est le texte de référence ?', a: "L'activité cinématographique au Cameroun est régie par le Décret N°90/1462 du 09 novembre 1990 relatif aux autorisations et au contrôle des activités cinématographiques." },
       { q: 'Combien de temps prend le traitement d’une demande ?', a: "Le délai maximum de traitement est de 90 jours pour les autorisations de production, de prise de vue et de distribution." },
       { q: "Un film peut-il être diffusé sans visa d'exploitation ?", a: "Non. Aucun film ne peut être projeté publiquement au Cameroun sans un visa d'exploitation délivré par le Ministère de la Culture." },
-      { q: 'Qui délivre l’autorisation de construire une salle de cinéma ?', a: "L'autorisation de construction est délivrée par le Gouverneur, après examen du dossier par la Commission Provinciale." },
+      { q: 'Qui délivre l’autorisation de construire une salle de cinéma ?', a: "L'autorisation de construction est délivrée par le Gouverneur, après examen du dossier par la Commission Régionale." },
       { q: 'Quels documents sont communs à la plupart des demandes ?', a: "La demande timbrée, le casier judiciaire et, le cas échéant, les statuts de la société figurent parmi les pièces les plus fréquemment exigées." },
       { q: 'Comment classer un film selon son public ?', a: "La Commission Nationale de Contrôle attribue l'un des visas suivants : tous publics, interdit aux moins de 13 ans, interdit aux moins de 18 ans, ou refus d'exploitation." },
     ],
@@ -205,19 +205,19 @@ const CT = {
       {
         icon: '🎥',
         title: 'Production Authorization',
-        docs: ['Stamped application', 'Provisional film title', 'Format and technical details', 'Filming locations', 'Laboratory name', 'Shooting start date', "Director's criminal record", 'Company statutes (if applicable)'],
+        docs: ['Stamped application addressed to the Minister', 'Provisional film title, format and technical details, and filming locations.', 'Laboratory name', 'Shooting start date', "Director's criminal record", 'Company statutes (if applicable)', 'Attestation of registration', 'Tax compliance certificate', 'Trade and Companies Register extract', 'Filming budget', 'Proof of payment / payment receipt'],
         sub: [] as string[],
       },
       {
         icon: '📹',
         title: 'Filming Authorization',
-        docs: ['Stamped application', 'Screenplay', "Authors' contracts", "Director's contract", 'Technical staff list', 'Production authorization', 'Civil status information'],
+        docs: ['Stamped application', 'Screenplay', "Contracts for the screenwriter and composer, and the director's contract.", 'Technical staff list', 'Production authorization', 'Civil status information', 'Payment receipt for 20,000 FCFA.', 'Technical specification sheet.'],
         sub: [],
       },
       {
         icon: '📀',
         title: 'Distribution Authorization',
-        docs: ['Stamped application', 'Criminal record', 'Company statutes'],
+        docs: ['Stamped application', 'Criminal record', 'Company statutes', 'LCCM', 'Tax compliance certificate', 'Payment receipt for 200,000 FCFA.'],
         sub: [],
       },
       {
@@ -232,8 +232,8 @@ const CT = {
     construction_sub: 'From preparing the file to the building permit, follow every step of the procedure.',
     steps: [
       { title: 'Prepare the file', desc: 'Gather all required administrative and technical documents.' },
-      { title: 'Submit to the Provincial Delegation', desc: 'File the complete application with the MINAC Provincial Delegation.' },
-      { title: 'Review by the Provincial Commission', desc: 'The Commission examines compliance and admissibility of the file.' },
+      { title: 'Submit to the Regional Delegation', desc: 'File the complete application with the MINAC Regional Delegation.' },
+      { title: 'Review by the Regional Commission', desc: 'The Commission examines compliance and admissibility of the file.' },
       { title: "Governor's decision", desc: 'The Governor rules on the authorization request.' },
       { title: 'Building Authorization', desc: 'Issuance of the official authorization to build the theatre.' },
     ],
@@ -245,10 +245,10 @@ const CT = {
     visa_statement: 'No film may be screened in Cameroon without an exhibition visa issued by the Ministry of Culture.',
     visa_types_title: 'Visa types',
     visa_types: [
-      { color: 'green', label: 'General audiences', desc: 'Work accessible to all audiences without restriction.' },
-      { color: 'yellow', label: 'Not for under 13s', desc: 'Screening subject to an age restriction.' },
-      { color: 'red', label: 'Not for under 18s', desc: 'Work reserved for adult audiences.' },
-      { color: 'black', label: 'Exhibition refused', desc: 'Work not authorized for public screening.' },
+      { color: 'green', label: 'All audiences (Visa S)', desc: 'Content suitable for all audiences without restrictions.' },
+      { color: 'yellow', label: 'Not permitted for children under 13 (Visa T)', desc: 'Viewing is subject to an age restriction.' },
+      { color: 'red', label: 'Not permitted for persons under 18 (Visa D)', desc: 'Content restricted to adult audiences.' },
+      { color: 'black', label: 'Exhibition refused (Visa C)', desc: 'Content not authorized for public exhibition.' },
     ],
     deadlines_label: 'Key figures',
     deadlines_title: 'Administrative Deadlines',
@@ -287,7 +287,7 @@ const CT = {
       { q: 'What is the reference text?', a: 'Cinematographic activity in Cameroon is governed by Decree N°90/1462 of 09 November 1990 on the authorization and control of cinematographic activities.' },
       { q: 'How long does processing a request take?', a: 'The maximum processing time is 90 days for production, filming and distribution authorizations.' },
       { q: 'Can a film be screened without an exhibition visa?', a: 'No. No film may be publicly screened in Cameroon without an exhibition visa issued by the Ministry of Culture.' },
-      { q: 'Who issues the authorization to build a cinema theatre?', a: 'The building authorization is issued by the Governor, after the file has been reviewed by the Provincial Commission.' },
+      { q: 'Who issues the authorization to build a cinema theatre?', a: 'The building authorization is issued by the Governor, after the file has been reviewed by the Regional Commission.' },
       { q: 'Which documents are common to most requests?', a: 'The stamped application, the criminal record and, where applicable, the company statutes are among the most frequently required documents.' },
       { q: 'How is a film classified by audience?', a: 'The National Control Commission assigns one of the following visas: general audiences, not for under 13s, not for under 18s, or exhibition refused.' },
     ],
@@ -395,17 +395,6 @@ export default function CinemaRegulation() {
     els.forEach(el => obs.observe(el))
     return () => obs.disconnect()
   }, [])
-
-  // Reveal-on-scroll
-  useEffect(() => {
-    const els = document.querySelectorAll('.cine-reveal')
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
-      { threshold: 0.12 },
-    )
-    els.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  }, [lang])
 
   const scrollTo = (id: SectionId) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -535,6 +524,7 @@ export default function CinemaRegulation() {
                 return (
                   <div key={a.title} className={`cine-reveal cine-acc-item${isOpen ? ' open' : ''}`} style={{ transitionDelay: `${i * 60}ms` }}>
                     <button
+                      id={`acc-heading-${i}`}
                       className="cine-acc-head"
                       onClick={() => setOpenAuth(isOpen ? -1 : i)}
                       aria-expanded={isOpen}
@@ -544,14 +534,16 @@ export default function CinemaRegulation() {
                       <span className="cine-acc-title">{a.title}</span>
                       <ChevronDown className="cine-acc-chevron" size={20} aria-hidden />
                     </button>
-                    <div id={`acc-panel-${i}`} className="cine-acc-panel" role="region">
+                    <div id={`acc-panel-${i}`} className="cine-acc-panel" role="region" aria-labelledby={`acc-heading-${i}`} hidden={!isOpen}>
                       <div className="cine-acc-panel-inner">
                         {a.docs.length > 0 && (
                           <>
                             <p className="cine-acc-subhead"><FileText size={15} aria-hidden /> {t.docs_required}</p>
                             <ul className="cine-doc-list">
                               {a.docs.map(d => (
-                                <li key={d}><CheckCircle2 size={15} aria-hidden /> {d}</li>
+                                <li key={d}><CheckCircle2 size={15} aria-hidden /> {d === 'Quittance de paiement.' || d === 'Proof of payment / payment receipt' ? (
+                                  <a href="https://www.tresorpublic.cm/" target="_blank" rel="noopener noreferrer">{d}</a>
+                                ) : d}</li>
                               ))}
                             </ul>
                           </>
@@ -716,6 +708,7 @@ export default function CinemaRegulation() {
                 return (
                   <div key={item.q} className={`cine-reveal cine-faq-item${isOpen ? ' open' : ''}`}>
                     <button
+                      id={`faq-heading-${realIndex}`}
                       className="cine-faq-q"
                       onClick={() => setOpenFaq(isOpen ? -1 : realIndex)}
                       aria-expanded={isOpen}
@@ -724,7 +717,7 @@ export default function CinemaRegulation() {
                       <span>{item.q}</span>
                       <ChevronDown className="cine-acc-chevron" size={18} aria-hidden />
                     </button>
-                    <div id={`faq-${realIndex}`} className="cine-faq-a" role="region">
+                    <div id={`faq-${realIndex}`} className="cine-faq-a" role="region" aria-labelledby={`faq-heading-${realIndex}`} hidden={!isOpen}>
                       <p>{item.a}</p>
                     </div>
                   </div>

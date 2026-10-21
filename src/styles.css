@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5 {
   transition: all 0.3s ease;
 }
 .navbar-inner {
-  max-width: 1400px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
@@ -180,6 +180,8 @@ h1, h2, h3, h4, h5 {
   border-bottom: 2px solid var(--gold);
   z-index: 999;
   padding: 1rem 1.5rem 1.5rem;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
 }
 .mobile-menu.open { display: block; }
 .mobile-menu a {
@@ -541,6 +543,7 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 .dcpa-regulations-card h2 {
+  overflow-wrap: anywhere;
   margin-top: 0.65rem;
   color: #fff;
   font-size: clamp(2rem, 3vw, 3rem);
@@ -1198,10 +1201,15 @@ section { padding: 5rem 1.5rem; }
 /* ─── ANIMATIONS ─────────────────────────────────────── */
 @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .animate-in { animation: countUp 0.6s ease forwards; }
-.fade-in { opacity: 0; transform: translateY(25px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in { opacity: 1; transform: none; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
+/* Use the existing compact menu before long bilingual navigation clips controls. */
+@media (max-width: 1700px) {
+  .navbar-links { display: none; }
+  .hamburger { display: flex; }
+}
 @media (max-width: 1024px) {
   .dcpa-hero { height: auto; min-height: 100svh; }
   .dcpa-hero-inner { grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr); gap: 2.5rem; }
@@ -1266,7 +1274,8 @@ section { padding: 5rem 1.5rem; }
 .cine-page :focus-visible { outline: 3px solid var(--cine-gold); outline-offset: 2px; border-radius: 4px; }
 
 /* Reveal animation (Framer-Motion-like, CSS only) */
-.cine-reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+/* Content stays visible independently of scroll observers and dynamic filtering. */
+.cine-reveal { opacity: 1; transform: none; }
 .cine-reveal.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .cine-reveal { opacity: 1; transform: none; transition: none; }
@@ -1352,13 +1361,13 @@ section { padding: 5rem 1.5rem; }
 .cine-acc-title { flex: 1; font-size: 1.08rem; font-weight: 700; color: var(--cine-blue); font-family: 'Playfair Display', serif; }
 .cine-acc-chevron { color: var(--cine-gold); transition: transform 0.3s; flex-shrink: 0; }
 .cine-acc-item.open .cine-acc-chevron { transform: rotate(180deg); }
-.cine-acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
-.cine-acc-item.open .cine-acc-panel { grid-template-rows: 1fr; }
+.cine-acc-panel[hidden] { display: none; }
 .cine-acc-panel-inner { overflow: hidden; padding: 0 1.4rem; }
 .cine-acc-item.open .cine-acc-panel-inner { padding: 0 1.4rem 1.4rem; }
 .cine-acc-subhead { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cine-gold); margin: 0.4rem 0 0.7rem; }
 .cine-doc-list { list-style: none; margin: 0 0 0.5rem; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
 .cine-doc-list li { display: flex; align-items: center; gap: 0.55rem; font-size: 0.92rem; color: var(--cine-ink); }
+.cine-doc-list a { color: var(--cine-blue); text-decoration: underline; text-underline-offset: 0.2em; }
 .cine-doc-list li svg { color: var(--cine-gold); flex-shrink: 0; }
 .cine-doc-list-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
 .cine-subcats { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.8rem; }
@@ -1425,7 +1434,7 @@ section { padding: 5rem 1.5rem; }
 .cine-search { display: flex; align-items: center; gap: 0.6rem; background: #fff; border: 1px solid var(--cine-line); border-radius: 10px; padding: 0.65rem 1rem; flex: 1; min-width: 220px; transition: border-color 0.2s, box-shadow 0.2s; }
 .cine-search:focus-within { border-color: var(--cine-gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.18); }
 .cine-search svg { color: var(--cine-muted); flex-shrink: 0; }
-.cine-search input { border: none; outline: none; flex: 1; font-size: 0.95rem; background: transparent; color: var(--cine-ink); font-family: inherit; }
+.cine-search input { min-width: 0; border: none; outline: none; flex: 1; font-size: 0.95rem; background: transparent; color: var(--cine-ink); font-family: inherit; }
 .cine-search-wide { margin-bottom: 1.4rem; max-width: 480px; }
 .cine-downloads-toolbar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.6rem; }
 .cine-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -1448,8 +1457,7 @@ section { padding: 5rem 1.5rem; }
 .cine-faq-item { background: #fff; border: 1px solid var(--cine-line); border-radius: 12px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
 .cine-faq-item.open { border-color: rgba(212,175,55,0.6); box-shadow: 0 10px 26px rgba(10,35,66,0.08); }
 .cine-faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; background: none; border: none; padding: 1.1rem 1.3rem; cursor: pointer; text-align: left; font-size: 1rem; font-weight: 600; color: var(--cine-blue); }
-.cine-faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
-.cine-faq-item.open .cine-faq-a { grid-template-rows: 1fr; }
+.cine-faq-a[hidden] { display: none; }
 .cine-faq-a p { overflow: hidden; margin: 0; padding: 0 1.3rem; color: var(--cine-muted); font-size: 0.94rem; line-height: 1.65; }
 .cine-faq-item.open .cine-faq-a p { padding: 0 1.3rem 1.2rem; }
 
@@ -1486,6 +1494,9 @@ section { padding: 5rem 1.5rem; }
   .cine-overview-grid, .cine-stats-grid { grid-template-columns: 1fr; }
   .cine-brand-main { display: none; }
   .cine-visa-card { padding: 1.5rem; }
+  .cine-download-card { display: grid; grid-template-columns: 48px minmax(0, 1fr); min-width: 0; }
+  .cine-download-meta { overflow-wrap: anywhere; }
+  .cine-download-card .cine-btn { grid-column: 1 / -1; justify-self: start; }
 }
 
 /* Cinema regulation link in main navbar */
@@ -1620,7 +1631,7 @@ section { padding: 5rem 1.5rem; }
 .dcpa-hero-content h1 { font-size: clamp(2.7rem, 6vw, 5.4rem); line-height: 1; text-wrap: balance; }
 .dcpa-hero-content > p { max-width: 720px; margin-top: 1.5rem; color: rgba(255,255,255,.78); font-size: clamp(1.02rem, 2vw, 1.25rem); line-height: 1.75; }
 .dcpa-hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2.2rem; }
-.dcpa-presentation { position: relative; }
+.dcpa-presentation { position: relative; overflow: clip; }
 .dcpa-presentation::before { content: 'DCPA'; position: absolute; right: -1rem; top: 1rem; color: rgba(16,40,63,.035); font: 900 clamp(7rem, 22vw, 20rem)/1 'Playfair Display', serif; pointer-events: none; }
 .dcpa-missions { background: var(--inst-paper); }
 .dcpa-mission-count { color: var(--inst-green); border: 1px solid rgba(19,115,74,.25); border-radius: 30px; padding: .6rem 1rem; font-size: .74rem; font-weight: 800; white-space: nowrap; }

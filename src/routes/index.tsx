@@ -473,16 +473,6 @@ export default function MinacWebsite() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const els = document.querySelectorAll('.fade-in')
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) (e.target as HTMLElement).classList.add('visible') }),
-      { threshold: 0.1 }
-    )
-    els.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  })
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setMobileOpen(false)
@@ -553,7 +543,7 @@ export default function MinacWebsite() {
               <button className={`lang-btn${lang === 'en' ? ' active' : ''}`} onClick={() => setLang('en')}>EN</button>
               <button className={`lang-btn${lang === 'fr' ? ' active' : ''}`} onClick={() => setLang('fr')}>FR</button>
             </div>
-            <button className="hamburger" aria-label="Menu" onClick={() => setMobileOpen(o => !o)}>
+            <button className="hamburger" aria-label="Menu" aria-expanded={mobileOpen} aria-controls="home-mobile-menu" onClick={() => setMobileOpen(o => !o)}>
               <span /><span /><span />
             </button>
           </div>
@@ -561,7 +551,7 @@ export default function MinacWebsite() {
       </nav>
 
       {/* MOBILE MENU */}
-      <div className={`mobile-menu${mobileOpen ? ' open' : ''}`}>
+      <div id="home-mobile-menu" className={`mobile-menu${mobileOpen ? ' open' : ''}`}>
         <Link to="/organisation" onClick={() => setMobileOpen(false)}>Organisation</Link>
         <Link to="/directions/cinematographie-productions-audiovisuelles" onClick={() => setMobileOpen(false)}>DCPA</Link>
         {navLinks.map(l => (
