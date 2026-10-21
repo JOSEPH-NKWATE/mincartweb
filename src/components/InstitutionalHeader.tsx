@@ -24,12 +24,12 @@ export function InstitutionalHeader() {
         <span />
       </div>
       <div className="institutional-header-inner">
-        <Link to="/" className="institutional-brand" aria-label={language === 'fr' ? 'Accueil du MINAC' : 'MINAC home'}>
+        <Link to="/" className="institutional-brand" aria-label={language === 'fr' ? 'Accueil de la DCPA' : 'DCPA home'}>
           <span className="institutional-brand-mark">
-            <img src="/minac-logo.png" alt="" />
+            <img src="/dcpa-logo.png" alt="" />
           </span>
           <span>
-            <strong>{language === 'fr' ? 'Ministère des Arts et de la Culture' : 'Ministry of Arts and Culture'}</strong>
+            <strong>DCPA</strong>
             <small>{language === 'fr' ? 'République du Cameroun' : 'Republic of Cameroon'}</small>
           </span>
         </Link>

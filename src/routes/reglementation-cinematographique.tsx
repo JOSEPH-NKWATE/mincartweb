@@ -435,9 +435,9 @@ export default function CinemaRegulation() {
       <header className="cine-topbar">
         <div className="cine-topbar-inner">
           <Link to="/" className="cine-brand" aria-label={t.back_home}>
-            <span className="logo-badge logo-badge--cine"><img src="/minac-logo.png" alt="MINAC — Ministry of Arts and Culture" /></span>
+            <span className="logo-badge logo-badge--cine"><img src="/dcpa-logo.png" alt="DCPA" /></span>
             <span className="cine-brand-text">
-              <span className="cine-brand-top">{t.eyebrow}</span>
+              <span className="cine-brand-top">DCPA</span>
               <span className="cine-brand-main">République du Cameroun</span>
             </span>
           </Link>

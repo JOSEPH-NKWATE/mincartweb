@@ -527,10 +527,10 @@ export default function MinacWebsite() {
       <nav className="navbar">
         <div className="navbar-inner">
           <a className="navbar-brand" href="#home" onClick={e => { e.preventDefault(); scrollTo('home') }}>
-            <span className="logo-badge"><img src="/minac-logo.png" alt="MINAC — Ministry of Arts and Culture" /></span>
+            <span className="logo-badge"><img src="/dcpa-logo.png" alt="DCPA" /></span>
             <div className="navbar-brand-text">
               <span className="navbar-brand-top">{t.ministry_top}</span>
-              <span className="navbar-brand-main">{lang === 'en' ? 'Min. Arts & Culture' : 'Min. Arts et Culture'}</span>
+              <span className="navbar-brand-main">DCPA</span>
               <span className="navbar-brand-sub">{t.ministry_sub}</span>
             </div>
           </a>
