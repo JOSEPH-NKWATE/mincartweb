@@ -948,8 +948,8 @@ export default function MinacWebsite() {
             <div className="fade-in">
               {[
                 { icon: '📍', label: t.addr_label, value: t.addr_value },
-                { icon: '📞', label: t.phone_label, value: '+237 222 22 34 48' },
-                { icon: '✉️', label: t.email_label, value: 'contact@minac.cm' },
+                { icon: '📞', label: t.phone_label, value: '+237 222 23 35 68 / 222 23 36 01 (DCPA)' },
+                { icon: '✉️', label: t.email_label, value: 'minaccourrier@gmail.com · DCPA : dcpa.cameroon@yahoo.com' },
                 { icon: '🕐', label: t.hours_label, value: t.hours_value },
               ].map((item, i) => (
                 <div className="contact-info-item" key={i}>
@@ -1052,7 +1052,7 @@ export default function MinacWebsite() {
             </div>
             <div style={{ marginTop: '2rem' }}>
               <div className="footer-heading" style={{ marginBottom: '0.75rem' }}>🇨🇲 Cameroun • Cameroon</div>
-              <p style={{ fontSize: '0.8rem', lineHeight: 1.6 }}>📍 Avenue du 20 Mai, Yaoundé<br />📞 +237 222 22 34 48<br />✉️ contact@minac.cm</p>
+              <p style={{ fontSize: '0.8rem', lineHeight: 1.6 }}>📍 Avenue du 20 Mai, Yaoundé<br />📞 DCPA : +237 222 23 35 68 / 222 23 36 01<br />✉️ MINAC : minaccourrier@gmail.com<br />✉️ DCPA : dcpa.cameroon@yahoo.com</p>
             </div>
           </div>
         </div>

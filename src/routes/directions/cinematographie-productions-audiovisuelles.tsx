@@ -87,6 +87,7 @@ const departmentsFr = [
 ]
 
 const documentsFr = [
+  { title: 'Décret N°90/1462 du 09 novembre 1990', href: '/documents/decret-90-1462-autorisations-cinematographiques.pdf', meta: 'PDF · Document officiel' },
   { title: 'Loi sur la réglementation du cinéma', href: '/documents/loi-reglementation-cinema-cameroun.pdf', meta: 'PDF · Document officiel' },
   { title: 'Loi régissant l’audiovisuel au Cameroun', href: '/documents/loi-audiovisuel-cameroun-2015.pdf', meta: 'PDF · Document officiel' },
   { title: 'Règles de police et d’hygiène', href: '/documents/loi-regles-police-hygiene.pdf', meta: 'PDF · Document officiel' },
@@ -128,6 +129,7 @@ const departmentsEn = [
 ]
 
 const documentsEn = [
+  { title: 'Decree N°90/1462 of 09 November 1990', href: '/documents/decret-90-1462-autorisations-cinematographiques.pdf', meta: 'PDF · Official document' },
   { title: 'Law regulating cinema', href: '/documents/loi-reglementation-cinema-cameroun.pdf', meta: 'PDF · Official document' },
   { title: 'Law governing audiovisual media in Cameroon', href: '/documents/loi-audiovisuel-cameroun-2015.pdf', meta: 'PDF · Official document' },
   { title: 'Public safety and hygiene rules', href: '/documents/loi-regles-police-hygiene.pdf', meta: 'PDF · Official document' },
