@@ -134,6 +134,7 @@ const CT = {
     download_btn: 'Télécharger',
     no_results: 'Aucun document ne correspond à votre recherche.',
     forms: [
+      { title: 'Décret N°90/1462 du 09 novembre 1990 (Autorisations cinématographiques)', cat: 'Cinéma', href: '/documents/decret-90-1462-autorisations-cinematographiques.pdf' },
       { title: 'Loi sur la Réglementation du Cinéma', cat: 'Cinéma', href: '/documents/loi-reglementation-cinema-cameroun.pdf' },
       { title: 'Loi régissant l’Audiovisuel au Cameroun', cat: 'Audiovisuel', href: '/documents/loi-audiovisuel-cameroun-2015.pdf' },
       { title: 'Loi relative aux Droits et Taxes', cat: 'Droits et Taxes', href: '/documents/loi-droits-et-taxes.pdf' },
@@ -157,9 +158,9 @@ const CT = {
     contact_addr_label: 'Adresse',
     contact_addr: 'Ministère des Arts et de la Culture, Yaoundé, Région du Centre, Cameroun',
     contact_phone_label: 'Téléphone',
-    contact_phone: '+237 222 22 00 00',
+    contact_phone: '+237 222 23 35 68',
     contact_email_label: 'Courriel',
-    contact_email: 'contact@minac.cm',
+    contact_email: 'dcpa.cameroon@yahoo.com',
     contact_cta_title: 'Démarrer une demande en ligne',
     contact_cta_desc: 'Initiez votre demande d’autorisation directement auprès des services compétents.',
     contact_cta_btn: 'Faire une Demande en Ligne',
@@ -274,6 +275,7 @@ const CT = {
     download_btn: 'Download',
     no_results: 'No document matches your search.',
     forms: [
+      { title: 'Decree N°90/1462 of 09 November 1990 (Cinematographic Authorizations)', cat: 'Cinema', href: '/documents/decret-90-1462-autorisations-cinematographiques.pdf' },
       { title: 'Cinema Regulation Law', cat: 'Cinema', href: '/documents/loi-reglementation-cinema-cameroun.pdf' },
       { title: 'Law Governing Audiovisual Media in Cameroon', cat: 'Audiovisual', href: '/documents/loi-audiovisuel-cameroun-2015.pdf' },
       { title: 'Law on Duties and Taxes', cat: 'Duties and Taxes', href: '/documents/loi-droits-et-taxes.pdf' },
@@ -297,9 +299,9 @@ const CT = {
     contact_addr_label: 'Address',
     contact_addr: 'Ministry of Arts and Culture, Yaoundé, Centre Region, Cameroon',
     contact_phone_label: 'Phone',
-    contact_phone: '+237 222 22 00 00',
+    contact_phone: '+237 222 23 35 68',
     contact_email_label: 'Email',
-    contact_email: 'contact@minac.cm',
+    contact_email: 'dcpa.cameroon@yahoo.com',
     contact_cta_title: 'Start an online request',
     contact_cta_desc: 'Begin your authorization request directly with the relevant services.',
     contact_cta_btn: 'Submit an Online Request',
@@ -460,7 +462,7 @@ export default function CinemaRegulation() {
           <div className="cine-hero-cta">
             <a
               className="cine-btn cine-btn-gold"
-              href="/documents/loi-reglementation-cinema-cameroun.pdf"
+              href="/documents/decret-90-1462-autorisations-cinematographiques.pdf"
               download
             >
               <Download size={18} aria-hidden /> {t.cta_decree}
