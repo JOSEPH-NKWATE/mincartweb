@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, Building2, Film, Handshake, ShieldCheck } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/lib/language'
+import { EventsHighlights } from '@/components/EventsHighlights'
 
 export const Route = createFileRoute('/')({
   component: MinacWebsite,
@@ -218,6 +219,33 @@ const T = {
     footer_privacy: 'Privacy Policy',
     footer_terms: 'Terms of Use',
     footer_sitemap: 'Sitemap',
+    highlights: {
+      label: 'Events & Highlights',
+      title: 'Discover Our Cultural Events',
+      desc: "Explore the events, cultural activities, film initiatives, and audiovisual highlights celebrating Cameroon's rich cultural heritage. Watch a preview or discover the full video for more.",
+      badge: 'Event Preview',
+      preview_note: '5-second previews',
+      player: 'Video highlights',
+      prev: 'Previous video',
+      next: 'Next video',
+      play: 'Play previews',
+      pause: 'Pause previews',
+      start: 'Play previews',
+      blocked: 'Automatic playback is blocked by your browser. Press play to start the previews.',
+      error: 'This video could not be loaded. Moving to the next one…',
+      full: 'View Full Video',
+      new_tab: 'opens in a new tab',
+      counter: 'Video {n} of {total}',
+      select: 'Show video {n}',
+      thumbs: 'Choose a video',
+      videos: [
+        { title: 'Cultural Highlight 01', caption: 'MINAC DCPA audiovisual highlight' },
+        { title: 'Cultural Highlight 02', caption: 'MINAC DCPA audiovisual highlight' },
+        { title: 'Cultural Highlight 03', caption: 'MINAC DCPA audiovisual highlight' },
+        { title: 'Cultural Highlight 04', caption: 'MINAC DCPA audiovisual highlight' },
+        { title: 'Museum Documentary – Trailer', caption: 'Documentary trailer · 2022–2023' },
+      ],
+    },
   },
   fr: {
     nav_home: 'Accueil',
@@ -428,6 +456,33 @@ const T = {
     footer_privacy: 'Politique de Confidentialité',
     footer_terms: "Conditions d'Utilisation",
     footer_sitemap: 'Plan du Site',
+    highlights: {
+      label: 'Événements et temps forts',
+      title: 'Découvrez nos événements culturels',
+      desc: 'Explorez les événements, les activités culturelles, les initiatives cinématographiques et les temps forts audiovisuels qui célèbrent la richesse du patrimoine culturel camerounais. Regardez un aperçu ou découvrez la vidéo intégrale.',
+      badge: 'Aperçu de l’événement',
+      preview_note: 'Aperçus de 5 secondes',
+      player: 'Temps forts vidéo',
+      prev: 'Vidéo précédente',
+      next: 'Vidéo suivante',
+      play: 'Lire les aperçus',
+      pause: 'Mettre les aperçus en pause',
+      start: 'Lire les aperçus',
+      blocked: 'La lecture automatique est bloquée par votre navigateur. Appuyez sur lecture pour démarrer les aperçus.',
+      error: 'Cette vidéo n’a pas pu être chargée. Passage à la suivante…',
+      full: 'Voir la vidéo intégrale',
+      new_tab: 's’ouvre dans un nouvel onglet',
+      counter: 'Vidéo {n} sur {total}',
+      select: 'Afficher la vidéo {n}',
+      thumbs: 'Choisir une vidéo',
+      videos: [
+        { title: 'Temps fort culturel 01', caption: 'Temps fort audiovisuel MINAC DCPA' },
+        { title: 'Temps fort culturel 02', caption: 'Temps fort audiovisuel MINAC DCPA' },
+        { title: 'Temps fort culturel 03', caption: 'Temps fort audiovisuel MINAC DCPA' },
+        { title: 'Temps fort culturel 04', caption: 'Temps fort audiovisuel MINAC DCPA' },
+        { title: 'Grand documentaire du musée – Bande-annonce', caption: 'Bande-annonce du documentaire · 2022–2023' },
+      ],
+    },
   },
 } as const
 
@@ -607,6 +662,9 @@ export default function MinacWebsite() {
           </Link>
         </div>
       </section>
+
+      {/* EVENTS & HIGHLIGHTS */}
+      <EventsHighlights copy={t.highlights} />
 
       {/* ABOUT */}
       <section id="about" className="pattern-bg">
